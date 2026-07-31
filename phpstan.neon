@@ -1,0 +1,26 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - bootstrap/
+        - config/
+        - database/
+        - routes/
+
+    # Level 9 is the highest level
+    level: 5
+
+    # Ignore typical laravel magic issues
+    ignoreErrors:
+        - '#Unsafe usage of new static\(\).#'
+        - '#PHPDoc tag @use has invalid type Database\\Factories#.'
+        - '#Type Database\\Factories.* in generic type Illuminate\\Database\\Eloquent\\Factories\\HasFactory.* is not subtype of template type#'
+        - '#Parameter .* of class Illuminate\\Auth\\Events\\Verified constructor expects Illuminate\\Contracts\\Auth\\MustVerifyEmail, App\\Models\\User\|null given.#'
+        - '#Parameter .* of method Spatie\\Activitylog\\Support\\ActivityLogger::causedBy\(\) expects Illuminate\\Database\\Eloquent\\Model\|int\|string\|null, Illuminate\\Contracts\\Auth\\Authenticatable given.#'
+        - '#Parameter .* of static method Illuminate\\Support\\Str::lower\(\) expects string, Illuminate\\Support\\Stringable given.#'
+        - '#Call to an undefined method Intervention\\Image\\ImageManager::read\(\).#'
+
+    excludePaths:
+        - ./*/*/FileToBeExcluded.php

@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('pengaduan_timelines', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('pengaduan_id')->constrained('pengaduans')->cascadeOnDelete();
+            $table->foreignUuid('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->string('status'); // PengaduanStatus value
+            $table->string('judul');
+            $table->text('deskripsi')->nullable();
+            $table->text('catatan')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('color')->nullable();
+            $table->timestamps();
+
+            $table->index('pengaduan_id');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('pengaduan_timelines');
+    }
+};

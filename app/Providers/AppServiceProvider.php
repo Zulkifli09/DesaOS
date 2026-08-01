@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Existing bindings
         $this->app->bind(
             \App\Repositories\Interfaces\ArticleRepositoryInterface::class,
             \App\Repositories\ArticleRepository::class
@@ -23,6 +24,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Repositories\Contracts\AnnouncementRepositoryInterface::class,
             \App\Repositories\AnnouncementRepository::class
+        );
+
+        // Phase 3 — Digital Public Service bindings
+        $this->app->bind(
+            \App\Repositories\Interfaces\SuratRepositoryInterface::class,
+            \App\Repositories\SuratRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\Interfaces\PengaduanRepositoryInterface::class,
+            \App\Repositories\PengaduanRepository::class
         );
     }
 

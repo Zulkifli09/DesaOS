@@ -105,6 +105,12 @@ Route::middleware('auth')->group(function () {
         Route::post('media', [\App\Http\Controllers\Admin\MediaController::class, 'store'])->name('media.store');
         Route::delete('media/{media}', [\App\Http\Controllers\Admin\MediaController::class, 'destroy'])->name('media.destroy');
 
+        // Phase 4 — WhatsApp Gateway
+        Route::prefix('whatsapp')->name('whatsapp.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\WhatsAppController::class, 'index'])->name('index');
+            Route::post('/logout', [\App\Http\Controllers\Admin\WhatsAppController::class, 'logout'])->name('logout');
+        });
+
         // Phase 3 — Admin Surat Management
         Route::prefix('layanan')->name('layanan.')->group(function () {
             // Surat admin
